@@ -52,3 +52,6 @@ list.o: list.c list.h
 
 CPU.o: CPU.c cpu.h
 	$(CC) $(CFLAGS) -c CPU.c
+
+all: list.o CPU.o driver.o
+		$(CC) $(CFLAGS) -c list.c CPU.c driver.c
