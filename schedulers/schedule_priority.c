@@ -11,9 +11,11 @@ void add(char *name, int priority, int burst)
 {
     Task *newTask = malloc(sizeof(Task));
     newTask->name = name;
-    newTask->tid = ++tid;
+    newTask->tid = ++priority_tid;
     newTask->priority = priority;
     newTask->burst = burst;
+    insert(&head, newTask);
+    printf("list added with name: %s, with tid: %d\n", name, priority_tid);
 }
 
 void schedule()
@@ -25,7 +27,8 @@ void schedule()
     {
         struct node *runNode = head;
         struct node *highestPriority = runNode;
-        while (runNode->next != NULL)
+        // printf("%s\n", highestPriority->task);
+        while (runNode != NULL)
         {
             if (runNode->task->priority > highestPriority->task->priority)
             {
@@ -33,7 +36,7 @@ void schedule()
             }
             runNode = runNode->next;
         }
-        run(runNode->task, runNode->task->burst);
-        delete (&head, runNode->task);
+        run(highestPriority->task, highestPriority->task->burst);
+        delete (&head, highestPriority->task);
     }
 }

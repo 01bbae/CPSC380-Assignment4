@@ -2,24 +2,22 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "schedule_fcfs.h"
+#include "schedule_sjf.h"
 #include "task.h"
 #include "cpu.h"
 #include "list.h"
 
-// add a task to the list
 void add(char *name, int priority, int burst)
 {
     Task *newTask = malloc(sizeof(Task));
     newTask->name = name;
-    newTask->tid = ++fcfs_tid;
+    newTask->tid = ++sjf_tid;
     newTask->priority = priority;
     newTask->burst = burst;
     insert(&head, newTask);
-    printf("list added with name: %s, with tid: %d\n", name, fcfs_tid);
+    printf("list added with name: %s, with tid: %d\n", name, sjf_tid);
 }
 
-// invoke the scheduler
 void schedule()
 {
     printf("tasks queued below\n");
@@ -28,11 +26,17 @@ void schedule()
     while (head != NULL)
     {
         struct node *runNode = head;
-        while (runNode->next != NULL)
+        struct node *leastBurst = runNode;
+        // printf("%s\n", highestPriority->task);
+        while (runNode != NULL)
         {
+            if (runNode->task->burst < leastBurst->task->burst)
+            {
+                leastBurst = runNode;
+            }
             runNode = runNode->next;
         }
-        run(runNode->task, runNode->task->burst);
-        delete (&head, runNode->task);
+        run(leastBurst->task, leastBurst->task->burst);
+        delete (&head, leastBurst->task);
     }
 }

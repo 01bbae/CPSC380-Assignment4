@@ -13,6 +13,7 @@
 // #include "task.h"
 // #include "list.h"
 #include "schedule_fcfs.h"
+#include "schedule_priority.h"
 
 #define SIZE 100
 

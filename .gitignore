@@ -1,0 +1,5 @@
+schedulers/*.o
+schedulers/rr
+schedulers/fcfs
+schedulers/sjf
+schedulers/priority

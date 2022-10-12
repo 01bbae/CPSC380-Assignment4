@@ -6,7 +6,7 @@ schedule_rr.c
 schedule_priority.c
 schedule_priority_rr.c
 
-The supporting files invoke the appropriate scheduling algorithm. 
+The supporting files invoke the appropriate scheduling algorithm.
 
 For example, to build the FCFS scheduler, enter
 

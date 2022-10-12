@@ -6,8 +6,8 @@
 
 #include "list.h"
 
-struct node *head;
-int tid = 0;
+static struct node *head;
+static int fcfs_tid = 0;
 
 // add a task to the list
 void add(char *name, int priority, int burst);

@@ -1,13 +1,12 @@
-#ifndef SCHEDULE_PRIORITY_H
-#define SCHEDULE_PRIORITY_H
+#ifndef SCHEDULE_RR_H
+#define SCHEDULE_RR_H
 
-#define MIN_PRIORITY 1
-#define MAX_PRIORITY 10
+#define TIME_QUANTUM 10
 
 #include "list.h"
 
 static struct node *head;
-static int priority_tid = 0;
+static int rr_tid = 0;
 
 // add a task to the list
 void add(char *name, int priority, int burst);
